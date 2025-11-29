@@ -12,6 +12,9 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
+    
+    env:
+      RCD2_API_KEY: "test-key-123"
 
     steps:
     - uses: actions/checkout@v3

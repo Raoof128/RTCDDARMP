@@ -29,6 +29,8 @@ class PredictionResponse(BaseModel):
     model_version: str
     timestamp: str
 
+    model_config = {"protected_namespaces": ()}
+
 
 @router.post("/predict", response_model=PredictionResponse)
 async def predict(request: PredictionRequest, fastapi_request: Request):
