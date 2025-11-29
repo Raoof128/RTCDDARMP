@@ -154,9 +154,10 @@ class DriftDetector:
         current_features_array = np.array(self.current_features)
 
         # Initialize results
-        drift_scores = []
-        affected_features = []
-        details = {}
+        # Initialize results
+        drift_scores: List[float] = []
+        affected_features: List[int] = []
+        details: Dict[str, Any] = {}
 
         # 1. Feature-wise drift detection
         feature_drifts = []
@@ -242,15 +243,17 @@ class DriftDetector:
             }
 
         # Calculate overall drift score
-        overall_drift_score = np.mean(drift_scores) if drift_scores else 0
-        overall_drift_score = min(100, max(0, overall_drift_score))  # Clamp 0-100
+        overall_drift_score = float(np.mean(drift_scores)) if drift_scores else 0.0
+        overall_drift_score = float(
+            min(100.0, max(0.0, overall_drift_score))
+        )  # Clamp 0-100
 
         # Determine drift type and severity
         drift_type = str(self._classify_drift_type(details, affected_features))
         severity = str(self._classify_severity(overall_drift_score))
 
         result = {
-            "drift_score": float(overall_drift_score),
+            "drift_score": overall_drift_score,
             "drift_type": drift_type,
             "severity": severity,
             "affected_features": affected_features,
@@ -268,7 +271,7 @@ class DriftDetector:
             f"Drift detected: score={overall_drift_score:.2f}, type={drift_type}, severity={severity}"
         )
 
-        return convert_numpy_types(result)
+        return convert_numpy_types(result)  # type: ignore
 
     def _classify_drift_type(self, details: Dict, affected_features: List[int]) -> str:
         """Classify the type of drift"""

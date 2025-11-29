@@ -82,7 +82,7 @@ def population_stability_index(
     # Calculate PSI
     psi = np.sum((curr_prop - ref_prop) * np.log(curr_prop / ref_prop))
 
-    return psi
+    return float(psi)
 
 
 def kl_divergence(reference: np.ndarray, current: np.ndarray, bins: int = 10) -> float:
@@ -126,7 +126,7 @@ def kl_divergence(reference: np.ndarray, current: np.ndarray, bins: int = 10) ->
     # Calculate KL divergence
     kl_div = np.sum(curr_prob * np.log(curr_prob / ref_prob))
 
-    return kl_div
+    return float(kl_div)
 
 
 def jensen_shannon_divergence(
@@ -173,7 +173,7 @@ def jensen_shannon_divergence(
         curr_prob * np.log(curr_prob / m)
     )
 
-    return js_div
+    return float(js_div)
 
 
 def wasserstein_distance(reference: np.ndarray, current: np.ndarray) -> float:
@@ -192,7 +192,7 @@ def wasserstein_distance(reference: np.ndarray, current: np.ndarray) -> float:
     float
         Wasserstein distance
     """
-    return stats.wasserstein_distance(reference, current)
+    return float(stats.wasserstein_distance(reference, current))
 
 
 def chi_square_test(

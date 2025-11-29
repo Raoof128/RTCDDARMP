@@ -163,7 +163,7 @@ def inject_noise(X: np.ndarray, noise_level: float = 0.1) -> np.ndarray:
         Noisy data
     """
     noise = np.random.randn(*X.shape) * noise_level
-    return X + noise
+    return X + noise  # type: ignore
 
 
 class DataStreamSimulator:

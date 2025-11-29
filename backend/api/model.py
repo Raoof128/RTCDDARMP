@@ -81,8 +81,6 @@ async def list_models(fastapi_request: Request):
         model_registry = fastapi_request.app.state.model_registry
         models = model_registry.list_models()
 
-        from dataclasses import asdict
-
         return convert_numpy_types({"models": models, "count": len(models)})
 
     except Exception as e:

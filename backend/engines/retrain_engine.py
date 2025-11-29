@@ -58,7 +58,7 @@ class RetrainEngine:
         }
 
         # Retraining history
-        self.retrain_history = []
+        self.retrain_history: list[Dict[str, Any]] = []
 
     def train_initial_model(self) -> str:
         """
@@ -232,23 +232,23 @@ class RetrainEngine:
         # The requested change seems to be a different set of keys and conversions.
         # I will replace the existing return dictionary with the new one,
         # interpreting 'success' as 'promoted' for the message, and using 'new_version' and 'new_accuracy'.
-        return convert_numpy_types(
-            {
-                "success": bool(
-                    promoted
-                ),  # Using 'promoted' as the success indicator for the final outcome
-                "version": str(new_version) if new_version else None,
-                "promoted": bool(promoted),
-                "drift_score": float(drift_score),
-                "accuracy": float(new_accuracy) if new_accuracy is not None else None,
-                "message": "Retraining triggered successfully"
-                if promoted
-                else "Retraining completed, but model not promoted",
-                "improvement": improvement,
-                "validation": validation_result,
-                "duration_seconds": duration,
-            }
-        )
+        # interpreting 'success' as 'promoted' for the message, and using 'new_version' and 'new_accuracy'.
+        result = {
+            "success": bool(
+                promoted
+            ),  # Using 'promoted' as the success indicator for the final outcome
+            "version": str(new_version) if new_version else None,
+            "promoted": bool(promoted),
+            "drift_score": float(drift_score),
+            "accuracy": float(new_accuracy) if new_accuracy is not None else None,
+            "message": "Retraining triggered successfully"
+            if promoted
+            else "Retraining completed, but model not promoted",
+            "improvement": improvement,
+            "validation": validation_result,
+            "duration_seconds": duration,
+        }
+        return convert_numpy_types(result)  # type: ignore
 
     def _train_and_register(
         self, X: np.ndarray, y: np.ndarray, reason: str, drift_score: float

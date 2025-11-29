@@ -3,7 +3,7 @@ Model Validator
 Validates models before deployment with multiple checks
 """
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import numpy as np
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
@@ -37,7 +37,7 @@ class ModelValidator:
         model: Any,
         X_val: np.ndarray,
         y_val: np.ndarray,
-        feature_names: List[str] = None,
+        feature_names: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         """
         Comprehensive model validation.
@@ -60,7 +60,7 @@ class ModelValidator:
         """
         logger.info("🔍 Starting model validation...")
 
-        results = {"passed": True, "checks": {}, "failures": []}
+        results: Dict[str, Any] = {"passed": True, "checks": {}, "failures": []}
 
         # Make predictions
         y_pred = model.predict(X_val)
@@ -139,7 +139,7 @@ class ModelValidator:
         }
 
     def _check_explainability(
-        self, model: Any, X_val: np.ndarray, feature_names: List[str] = None
+        self, model: Any, X_val: np.ndarray, feature_names: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
         Check explainability (mock SHAP-like feature importance).

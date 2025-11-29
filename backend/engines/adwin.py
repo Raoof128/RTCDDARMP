@@ -6,6 +6,7 @@ Reference: Bifet, A., & Gavaldà, R. (2007). Learning from time-changing data wi
 """
 
 from collections import deque
+from typing import Deque
 
 import numpy as np
 
@@ -26,7 +27,7 @@ class ADWIN:
 
     def __init__(self, delta: float = 0.002):
         self.delta = delta
-        self.window = deque()
+        self.window: Deque[float] = deque()
         self.total = 0.0
         self.variance = 0.0
         self.width = 0
@@ -117,7 +118,7 @@ class ADWIN:
                 if self.width > 0:
                     remaining = list(self.window)
                     self.variance = (
-                        np.var(remaining) * self.width if self.width > 1 else 0
+                        float(np.var(remaining)) * self.width if self.width > 1 else 0.0
                     )
 
                 return True
