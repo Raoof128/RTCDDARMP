@@ -101,8 +101,6 @@ class ADWIN:
             mean0 = np.mean(w0)
             mean1 = np.mean(w1)
 
-
-
             # Hoeffding bound
             m = 1.0 / (1.0 / n0 + 1.0 / n1)
             epsilon = np.sqrt((1.0 / (2 * m)) * np.log(4.0 / self.delta))

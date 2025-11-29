@@ -156,8 +156,6 @@ class RetrainEngine:
                 "reason": "no_previous_champion",
             }
 
-
-
         # Step 4: Validate new model
         logger.info("✔️ Validating new model...")
         X_val, y_val = generate_synthetic_data(n_samples=200, n_features=3)
