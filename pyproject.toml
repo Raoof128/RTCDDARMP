@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rcd2"
+version = "1.0.0"
+description = "Real-Time Concept Drift Detector & Auto-Retraining ML Pipeline"
+readme = "README.md"
+authors = [
+    { name = "RCD2 Team", email = "team@rcd2.local" }
+]
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["mlops", "drift-detection", "concept-drift", "auto-retraining", "fastapi"]
+dependencies = [
+    "fastapi==0.104.1",
+    "uvicorn[standard]==0.24.0",
+    "pydantic==2.5.0",
+    "pydantic-settings==2.1.0",
+    "scikit-learn==1.4.0",
+    "numpy==1.26.3",
+    "pandas==2.1.4",
+    "scipy==1.11.4",
+    "plotly==5.18.0",
+    "matplotlib==3.8.2",
+    "python-dateutil==2.8.2",
+    "python-multipart==0.0.6",
+    "structlog==23.2.0",
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.3",
+    "pytest-asyncio==0.21.1",
+    "pytest-cov==4.1.0",
+    "httpx==0.25.2",
+    "black==23.12.0",
+    "flake8==6.1.0",
+    "mypy==1.7.1",
+    "isort==5.13.0",
+    "markdown==3.5.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/rcd2"
+Repository = "https://github.com/example/rcd2.git"
+Documentation = "https://github.com/example/rcd2/blob/main/README.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backend*", "backend.*"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --cov=backend"
+testpaths = [
+    "tests",
+]
+python_files = "test_*.py"
+asyncio_mode = "auto"
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

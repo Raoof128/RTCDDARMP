@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCD² - Real-Time Concept Drift Detector Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🔄 RCD² Platform</h1>
+                <p class="subtitle">Real-Time Concept Drift Detector & Auto-Retraining Pipeline</p>
+            </div>
+            <div class="status-badge">
+                <span id="systemStatus" class="status healthy">●</span>
+                <span id="statusText">OPERATIONAL</span>
+            </div>
+        </header>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+            <!-- Drift Score Card -->
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Drift Score</h3>
+                    <span class="refresh-btn" onclick="refreshMetrics()">🔄</span>
+                </div>
+                <div class="metric-value">
+                    <span id="driftScore" class="drift-score">--</span>
+                    <span class="metric-unit">/100</span>
+                </div>
+                <div class="metric-info">
+                    <span id="driftSeverity" class="severity-badge">--</span>
+                    <span id="driftType" class="drift-type">--</span>
+                </div>
+            </div>
+
+            <!-- Champion Model Card -->
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Champion Model</h3>
+                </div>
+                <div class="metric-value">
+                    <span id="championVersion" class="model-version">--</span>
+                </div>
+                <div class="metric-info">
+                    <div>Accuracy: <span id="championAccuracy">--</span></div>
+                    <div>Samples: <span id="championSamples">--</span></div>
+                </div>
+            </div>
+
+            <!-- Retraining Stats Card -->
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Retraining Stats</h3>
+                </div>
+                <div class="metric-value">
+                    <span id="totalRetrains">--</span>
+                    <span class="metric-unit">total</span>
+                </div>
+                <div class="metric-info">
+                    <div>Promoted: <span id="promotedCount">--</span></div>
+                    <div>Success Rate: <span id="promotionRate">--</span></div>
+                </div>
+            </div>
+
+            <!-- Model Registry Card -->
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Model Registry</h3>
+                </div>
+                <div class="metric-value">
+                    <span id="totalModels">--</span>
+                    <span class="metric-unit">models</span>
+                </div>
+                <div class="metric-info">
+                    <button onclick="showModels()" class="btn-secondary">View All</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+            <!-- Drift Timeline Chart -->
+            <div class="card chart-card">
+                <div class="card-header">
+                    <h3>Drift Score Timeline</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="driftChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Model Performance Chart -->
+            <div class="card chart-card">
+                <div class="card-header">
+                    <h3>Model Accuracy Timeline</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="accuracyChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions Panel -->
+        <div class="card actions-panel">
+            <div class="card-header">
+                <h3>Actions</h3>
+            </div>
+            <div class="actions-grid">
+                <button onclick="testPrediction()" class="btn-primary">Test Prediction</button>
+                <button onclick="ingestSampleData()" class="btn-primary">Ingest Sample Data</button>
+                <button onclick="checkDrift()" class="btn-primary">Check Drift Now</button>
+                <button onclick="triggerRetrain()" class="btn-warning">Force Retrain</button>
+            </div>
+        </div>
+
+        <!-- Recent Events -->
+        <div class="card events-panel">
+            <div class="card-header">
+                <h3>Recent Events</h3>
+            </div>
+            <div id="eventsList" class="events-list">
+                <div class="event-item">
+                    <span class="event-time">Loading...</span>
+                    <span class="event-description">Fetching recent events...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>RCD² Platform v1.0.0 | <a href="/docs">API Documentation</a> | Last updated: <span id="lastUpdate">--</span></p>
+        </footer>
+    </div>
+
+    <!-- Modal for displaying detailed info -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
