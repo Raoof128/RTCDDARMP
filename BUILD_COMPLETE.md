@@ -72,7 +72,7 @@ The platform is **CURRENTLY RUNNING** at:
 
 **Start again**:
 ```bash
-cd /Users/raoof.r12/Desktop/Raouf/RCD2
+cd rcd2
 ./venv/bin/python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
@@ -87,7 +87,8 @@ import requests
 
 response = requests.post(
     "http://localhost:8000/api/predict",
-    json={"features": [0.5, -0.3, 1.2]}
+    json={"features": [0.5, -0.3, 1.2]},
+    headers={"X-API-Key": "dev-key-123"}
 )
 print(response.json())
 ```
@@ -97,6 +98,7 @@ print(response.json())
 ```bash
 curl -X POST "http://localhost:8000/api/predict" \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: dev-key-123" \
   -d '{"features": [0.5, -0.3, 1.2]}'
 ```
 
@@ -113,11 +115,12 @@ for i in range(50):
     
     requests.post(
         "http://localhost:8000/api/ingest",
-        json={"features": features, "label": label}
+        json={"features": features, "label": label},
+        headers={"X-API-Key": "dev-key-123"}
     )
 
 # Check drift
-drift = requests.get("http://localhost:8000/api/drift").json()
+drift = requests.get("http://localhost:8000/api/drift", headers={"X-API-Key": "dev-key-123"}).json()
 print(f"Drift Score: {drift['drift_score']}")
 print(f"Severity: {drift['severity']}")
 ```
@@ -130,7 +133,8 @@ response = requests.post(
     json={
         "drift_score": 75.0,
         "reason": "testing_retraining"
-    }
+    },
+    headers={"X-API-Key": "dev-key-123"}
 )
 
 result = response.json()
