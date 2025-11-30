@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-11-30
+
+### Fixed
+- **CI/CD**: Resolved GitHub Actions failures by setting `RCD2_API_KEY` in test environment.
+- **Linting**: Fixed all `mypy` type errors and `flake8` warnings.
+- **Security**:
+  - Implemented API Key authentication (`X-API-Key`) for all sensitive endpoints.
+  - Added constant-time key comparison to prevent timing attacks.
+  - Updated `QUICKSTART.md` and `README.md` with security instructions.
+- **Documentation**:
+  - Fixed broken links and emojis in `README.md`.
+  - Updated repository URLs to point to the correct location.
+  - Corrected Python examples in `QUICKSTART.md` to include authentication headers.
+
 ## [1.0.0] - 2024-01-01
 
 ### Added

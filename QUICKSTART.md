@@ -10,7 +10,7 @@
 
 ```bash
 # Navigate to project directory
-cd /Users/raoof.r12/Desktop/Raouf/RCD2
+cd rcd2
 
 # Create virtual environment
 python3 -m venv venv
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ```bash
 # From project root
-python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+RCD2_API_KEY=dev-key-123 python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 The API will be available at:
@@ -55,7 +55,8 @@ import requests
 # Make a prediction
 response = requests.post(
     "http://localhost:8000/api/predict",
-    json={"features": [0.5, -0.3, 1.2]}
+    json={"features": [0.5, -0.3, 1.2]},
+    headers={"X-API-Key": "dev-key-123"}
 )
 
 result = response.json()
@@ -73,7 +74,8 @@ requests.post(
     json={
         "features": [0.5, -0.3, 1.2],
         "label": 1
-    }
+    },
+    headers={"X-API-Key": "dev-key-123"}
 )
 ```
 
@@ -81,7 +83,7 @@ requests.post(
 
 ```python
 # Get drift status
-response = requests.get("http://localhost:8000/api/drift")
+response = requests.get("http://localhost:8000/api/drift", headers={"X-API-Key": "dev-key-123"})
 drift = response.json()
 
 print(f"Drift Score: {drift['drift_score']}")
@@ -98,7 +100,8 @@ response = requests.post(
     json={
         "drift_score": 75.0,
         "reason": "manual_trigger"
-    }
+    },
+    headers={"X-API-Key": "dev-key-123"}
 )
 
 result = response.json()

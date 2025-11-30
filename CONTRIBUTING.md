@@ -29,16 +29,15 @@ This project adheres to a Code of Conduct that all contributors are expected to 
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Raoof128/RTCDDARMP.git
 cd RCD2
 
 # Create virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install development dependencies
+# Install dependencies
 pip install -r requirements.txt
-pip install -r requirements-dev.txt  # If available
 
 # Run tests to verify setup
 pytest tests/ -v

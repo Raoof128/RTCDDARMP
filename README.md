@@ -1,6 +1,6 @@
 # RCD²: Real-Time Concept Drift Detector & Auto-Retraining ML Pipeline
 
-[![CI](https://github.com/example/rcd2/actions/workflows/ci.yml/badge.svg)](https://github.com/example/rcd2/actions)
+[![CI](https://github.com/Raoof128/RTCDDARMP/actions/workflows/ci.yml/badge.svg)](https://github.com/Raoof128/RTCDDARMP/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -34,13 +34,13 @@
 
 ---
 
-## �️ Installation
+## 🛠️ Installation
 
 ### Option 1: Local Setup (Python)
 
 ```bash
 # Clone repository
-git clone https://github.com/example/rcd2.git
+git clone https://github.com/Raoof128/RTCDDARMP.git
 cd rcd2
 
 # Install dependencies via Makefile
@@ -95,17 +95,17 @@ curl "http://localhost:8000/api/drift" -H "X-API-Key: dev-key-123"
 
 The platform uses **API Key Authentication** by default.
 
-1. **Set the Key**:
-   Set the `RCD2_API_KEY` environment variable before starting the server.
-   ```bash
-   export RCD2_API_KEY="your-secure-production-key"
-   ```
+1.  **Set the Key**:
+    Set the `RCD2_API_KEY` environment variable before starting the server.
+    ```bash
+    export RCD2_API_KEY="your-secure-production-key"
+    ```
 
-2. **Automatic Generation**:
-   If no key is set, the server will generate a secure random key on startup and log it to the console.
+2.  **Automatic Generation**:
+    If no key is set, the server will generate a secure random key on startup and log it to the console.
 
-3. **Dashboard Access**:
-   The dashboard will prompt you for the key on first load. It stores the key securely in your browser's LocalStorage.
+3.  **Dashboard Access**:
+    The dashboard will prompt you for the key on first load. It stores the key securely in your browser's LocalStorage.
 
 See [SECURITY_UPGRADE.md](SECURITY_UPGRADE.md) for details on recent security enhancements.
 
@@ -169,10 +169,10 @@ rcd2/
 
 We welcome contributions! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details.
 
-## � Security
+## 🔒 Security
 
 For security policy and vulnerability reporting, see [SECURITY.md](SECURITY.md).
 
-## � License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
