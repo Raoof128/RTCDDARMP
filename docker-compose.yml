@@ -13,6 +13,7 @@ services:
       - ./data:/app/data
     environment:
       - LOG_LEVEL=INFO
+      - RCD2_API_KEY=dev-key-123
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
